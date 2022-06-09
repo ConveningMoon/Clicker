@@ -2,30 +2,107 @@
 
 body {
     font-family: 'Homer Simpson Revised', sans-serif;
+    background: #f4e16c;
 }
 
 .boosts{  
     text-align: center;
-    float: right;
+    float: center;
     margin-bottom: 0px;
 }
 
-.container{
+.container {
     padding-top:20px;
     text-align: center;
-    display:block;
     width: 40%;
     float:left;
-    font-family: 'Homer Simpson Revised', sans-serif;
-    padding-bottom: 0px;
+    font-size: 30px;
 }
 
-.boosts-holder p {
-    font-family: 'Homer Simpson Revised', sans-serif;
+
+.container button {
+    padding: 0;
+    border: none;
+    background: none;
 }
 
-h3 {
-    font-family: 'Homer Simpson Revised', sans-serif;
+.coins {
     font-size: 50px;
 }
 
+nav {
+    font-size: 40px;
+}
+
+nav a{
+    text-align: right;
+    float: right;
+}
+
+h3 {
+    font-size: 50px;
+}
+
+p {
+    font-family: 'Homer Simpson Revised', sans-serif;
+    font-size: 30px;
+}
+
+:root {
+  --text-color: hsla(210, 50%, 85%, 1);
+  --shadow-color: hsla(210, 40%, 52%, .4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.boosts-holder button {
+  position:relative;
+  padding: 10px 20px;  
+  border: none;
+  background: none;
+  cursor: pointer;
+  
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--text-color);
+  
+  background-color: #ff8057;
+  box-shadow: var(--shadow-color) 2px 2px 22px;
+  border-radius: 4px; 
+  z-index: 0;  
+  overflow: hidden;   
+}
+
+.boosts-holder button:focus {
+  outline-color: transparent;
+  box-shadow: #63ffd4 2px 2px 22px;
+}
+
+/* bubbles */
+.boosts-holder button::before {
+  content: '';
+  pointer-events: none;
+  opacity: .6;
+  background:
+    radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+    radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+    radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, var(--text-color) 5px, var(--text-color) 6px, transparent 6px);
+
+  width: 100%;
+  height: 300%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: bubbles 5s linear infinite both;
+}
+
+@keyframes bubbles {
+  from {
+    transform: translate();
+  }
+  to {
+    transform: translate(0, -66.666%);
+  }
+}

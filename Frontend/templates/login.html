@@ -1,9 +1,51 @@
 <html lang="en">  
+{% load static %}
 <head>  
     <title>Авторизация в лучшем кликере</title>  
+    <link rel="stylesheet" href="{% static 'css/register.css' %}"> 
 </head>  
 <body>  
-    <h1>Авторизация</h1> 
+    <h1>Log in</h1> 
+    <div class="signup__container">
+        <div class="container__child signup__thumbnail">
+          <div class="thumbnail__content text-center">
+            <h1 class="heading--primary">Welcome to HANGOVER again</h1>
+            <h2 class="heading--secondary">Are you ready to continue?? Remember, the goal is to get wasted!!!</h2>
+          </div>
+          <div class="signup__overlay"></div>
+        </div>
+        <div class="container__child signup__form">
+            <form action="{% url 'login' %}" method='POST'>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>{{ form.username.label}}</label>
+                    </br>>
+                    {{ form.username}}
+                </div>
+                </br>
+                <div class="form-group">
+                    <label>{{ form.password.label}}</label>
+                    </br>>
+                    {{ form.password}}
+                </div>
+                </br>
+                <div class="m-t-lg">
+                <ul class="list-inline">
+                    <li>
+                    <input class="btn btn--form" type="submit" value="Log in"/>
+                    </li>
+                    <li>
+                    <a class="signup__link" href="{% url 'register' %}">I have not register yet</a>
+                    </li>
+                </ul>
+                </div>
+            </form>  
+        </div>
+    </div>
+</body>  
+</html>
+
+<!-- <h1>Авторизация</h1> 
     <form action="{% url 'login' %}" method='POST'>  
         {% csrf_token %}  
         {{ form.username }}  
@@ -13,6 +55,4 @@
         {% endif %}  
         <input type="submit">  
     </form> 
-    <a href="{% url 'register' %}">Не зарегистрирован?</a> 
-</body>  
-</html>
+    <a href="{% url 'register' %}">Не зарегистрирован?</a>  -->

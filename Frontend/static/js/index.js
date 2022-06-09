@@ -52,13 +52,13 @@ function change_image(self) {
     if (parseInt(coins.innerHTML) >= 500) {
         img.src = "static/img/barney_2.png"
     }
-    if (parseInt(coins.innerHTML) >= 1500) {
+    if (parseInt(coins.innerHTML) >= 3000) {
         img.src = "static/img/barney_3.png"
     }
-    if (parseInt(coins.innerHTML) >= 3000) {
+    if (parseInt(coins.innerHTML) >= 12000) {
         img.src = "static/img/barney_4.png"
     }
-    if (parseInt(coins.innerHTML) >= 6000) {
+    if (parseInt(coins.innerHTML) >= 20000) {
         img.src = "static/img/barney_5.jpg"
     }
 }
