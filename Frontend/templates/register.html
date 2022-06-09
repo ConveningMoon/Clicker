@@ -1,0 +1,54 @@
+<html lang="en">  
+{% load static %}
+<head>  
+    <title>Регистрация в лучшем кликере</title>  
+    <link rel="stylesheet" href="{% static 'css/register.css' %}"> 
+</head>  
+<body> 
+    <h1>Register</h1> 
+    {% if form.errors %}  
+        <p>{{form.errors}}</p>  
+    {% endif %}  
+    <div class="signup__container">
+        <div class="container__child signup__thumbnail">
+          <div class="thumbnail__content text-center">
+            <h1 class="heading--primary">Welcome to HANGOVER</h1>
+            <h2 class="heading--secondary">The best clicker to check if your skills are enough to get drunk asf!!!</h2>
+          </div>
+          <div class="signup__overlay"></div>
+        </div>
+        <div class="container__child signup__form">
+            <form action="{% url 'register' %}" method='POST'>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>{{ form.username.label}}</label>
+                    </br>>
+                    {{ form.username}}
+                </div>
+                </br>
+                <div class="form-group">
+                    <label>{{ form.password.label}}</label>
+                    </br>>
+                    {{ form.password}}
+                </div>
+                </br>
+                <div class="form-group">
+                    <label>{{ form.password_confirm.label}}</label>
+                    </br>>
+                    {{ form.password_confirm}}
+                </div>
+                <div class="m-t-lg">
+                <ul class="list-inline">
+                    <li>
+                    <input class="btn btn--form" type="submit" value="Register"/>
+                    </li>
+                    <li>
+                    <a class="signup__link" href="{% url 'login' %}">I am already a member</a>
+                    </li>
+                </ul>
+                </div>
+            </form>  
+        </div>
+    </div>
+</body>  
+</html>

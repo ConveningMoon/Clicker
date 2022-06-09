@@ -4,47 +4,63 @@ function GameSession() {
     this.auto_click_power = 0 
     this.next_level_price = 10
 
-    /** Метод для инициализации данных. Данные подгружаются с бэкенда. */ 
     this.init = function() { 
         getCore().then(core => { 
             this.coins = core.coins 
             this.click_power = core.click_power 
             this.auto_click_power = core.auto_click_power 
-            this.next_level_price = core.next_level_price 
+            this.next_level_price = core.next_level_price ///////////
             render() 
         }) 
     } 
-    /** Метод для добавления монеток. */ 
+
     this.add_coins = function(coins) { 
         this.coins += coins 
-        this.check_levelup() 
+        this.check_levelup() /////////
         render() 
     } 
-    /** Метод для добавления невероятной мощи. */ 
+
     this.add_power = function(power) { 
         this.click_power += power 
         render() 
     } 
-    /** Метод для добавления дружинника в отряд автоматизированных кликуш. */ 
+   
     this.add_auto_power = function(power) { 
         this.auto_click_power += power 
         render() 
     } 
-    /** Метод для проверки на повышения уровня. Отправка запроса на сохранение данных, если уровень повышен. */ 
-    this.check_levelup = function() { 
+   
+    this.check_levelup = function() { /////////
         if (this.coins >= this.next_level_price) { 
             updateCoins(this.coins).then(core => { 
-                this.next_level_price = core.next_level_price 
+                this.next_level_price = core.next_level_price
             }) 
         } 
     } 
 }
 
-let Game = new GameSession() // Экземпляр класса GameSession.
+let Game = new GameSession()
 
-/** Функция обработки клика пользователя на какаши. */ 
 function call_click() { 
     Game.add_coins(Game.click_power) 
+    change_image()
+}
+
+function change_image(self) {
+    var img = document.getElementById("image")
+    var coins = document.getElementById("coins")
+    if (parseInt(coins.innerHTML) >= 500) {
+        img.src = "static/img/barney_2.png"
+    }
+    if (parseInt(coins.innerHTML) >= 1500) {
+        img.src = "static/img/barney_3.png"
+    }
+    if (parseInt(coins.innerHTML) >= 3000) {
+        img.src = "static/img/barney_4.png"
+    }
+    if (parseInt(coins.innerHTML) >= 6000) {
+        img.src = "static/img/barney_5.jpg"
+    }
 }
 
 /** Функция для обновления количества монет, невероятной мощи и дружинных кликуш в HTML-элементах. */ 
@@ -66,7 +82,7 @@ function update_boost(boost) {
 }
 
 /** Функция для добавления буста на фронтике. */ 
-function add_boost(parent, boost) {  
+function add_boost(parent, boost) {  //
     const button = document.createElement('button')  
     button.setAttribute('class', `boost_${boost.type}`)  
     button.setAttribute('id', `boost_${boost.id}`)  
@@ -78,16 +94,6 @@ function add_boost(parent, boost) {
     `  
     parent.appendChild(button)  
 }
-
-/** Функция для анимации элемента, по которому происходит клик. */ 
-function click_animation(node, time_ms) { 
-    css_time = `.0${time_ms}s` 
-    node.style.cssText = `transition: all ${css_time} linear; transform: scale(0.95);` 
-    setTimeout(function() { 
-        node.style.cssText = `transition: all ${css_time} linear; transform: scale(1);` 
-    }, time_ms) 
-}
-
 /** Функция получения данных об игре пользователя с бэкенда. */ 
 function getCore() { 
     return fetch('/core/', { 
@@ -146,7 +152,7 @@ function get_boosts() {
 }
 
 /** Функция покупки буста. */ 
-function buy_boost(boost_id) {  
+function buy_boost(boost_id) {
     const csrftoken = getCookie('csrftoken') 
     return fetch(`/boost/${boost_id}/`, {  
         method: 'PUT', 

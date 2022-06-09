@@ -63,8 +63,7 @@ class Login(APIView):
 def call_click(request): 
     core = Core.objects.get(user=request.user) 
     is_levelup = core.click() 
-    if is_levelup: 
-        Boost.objects.create(core=core, price=core.coins, power=core.level*2) 
+
     core.save()
 
     return Response({ 'core': CoreSerializer(core).data, 'is_levelup': is_levelup })

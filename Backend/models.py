@@ -1,7 +1,8 @@
+from unittest.mock import DEFAULT
 from django.db import models 
 from django.contrib.auth.models import User
 from copy import copy
-from .constants import * 
+from .constants import *
 
 class Core(models.Model): 
     user = models.OneToOneField(User, null=False, on_delete=models.CASCADE) 
@@ -10,27 +11,18 @@ class Core(models.Model):
     level = models.IntegerField(default=1)
     auto_click_power = models.IntegerField(default=0)
 
-    # def click(self): 
-    #     self.coins += self.click_power
-
-    #     if self.coins >= self.calculate_next_level_price(): 
-    #         self.level += 1                       
-    
-    #         return True 
-    #     return False 
-
-    def set_coins(self, coins, commit=True): 
+    def set_coins(self, coins, commit=True):
         self.coins = coins
         boost_type = self.get_boost_type()
-        is_level_updated = self.is_levelup() 
+        is_level_updated = self.is_levelup()
 
         if is_level_updated:
             self.level += 1
         if commit:
             self.save()
-
+        
         return is_level_updated, boost_type
-    
+
     def get_boost_type(self):
         if self.level % 3 == 0:
             return BOOST_TYPE_NAME_TO_NUMBER['auto']
@@ -38,9 +30,17 @@ class Core(models.Model):
     
     def is_levelup(self):
         return self.coins >= self.calculate_next_level_price()
+
+    def click(self): 
+        self.coins += self.click_power
+
+        if self.coins == 1:               
+            return True 
+        return False 
      
-    def calculate_next_level_price(self): 
-        return (self.level**2)*10*(self.level) 
+    def calculate_next_level_price(self):
+        return (self.level**2)*10*(self.level)
+
 
 class Boost(models.Model): 
     core = models.ForeignKey(Core, null=False, on_delete=models.CASCADE) 

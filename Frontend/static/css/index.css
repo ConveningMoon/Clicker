@@ -1,0 +1,31 @@
+@import url('http://fonts.cdnfonts.com/css/homer-simpson-revised');
+
+body {
+    font-family: 'Homer Simpson Revised', sans-serif;
+}
+
+.boosts{  
+    text-align: center;
+    float: right;
+    margin-bottom: 0px;
+}
+
+.container{
+    padding-top:20px;
+    text-align: center;
+    display:block;
+    width: 40%;
+    float:left;
+    font-family: 'Homer Simpson Revised', sans-serif;
+    padding-bottom: 0px;
+}
+
+.boosts-holder p {
+    font-family: 'Homer Simpson Revised', sans-serif;
+}
+
+h3 {
+    font-family: 'Homer Simpson Revised', sans-serif;
+    font-size: 50px;
+}
+

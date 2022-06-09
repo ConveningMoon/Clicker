@@ -8,23 +8,25 @@
 <body> 
     <main class="app"> 
         <nav class="nav"> 
-            Привет, {{ user.username }} 
-            <a href="{% url 'logout' %}">Выйти</a> 
+            Hello, {{ user.username }} 
+            <a href="{% url 'logout' %}">Sign out</a> 
         </nav> 
 
         <div class="container"> 
             <div id='coins'>{{core.coins}}</div>  
-            <button onclick="call_click()">Нажми меня</button>
+            <button onclick="call_click()">
+                <img id="image" src="{% static 'img/barney_1.png' %}">
+            </button>          
             <p>
-                Невероятная мощь клика: <span id="click_power">{{ core.click_power }}</span>   
+                Incredible click power: <span id="click_power">{{ core.click_power }}</span>   
             </p>
             <p>
-                Самостоятельная дружина кликеров. Чел: <span id="auto_click_power">{{ core.auto_click_power }}</span>   
+                Independent squad of clickers: <span id="auto_click_power">{{ core.auto_click_power }}</span>   
             </p>
         </div> 
 
         <aside class="boosts" id="boosts">   
-            <h3>Бусты</h3>   
+            <h3>BOOOOOST!!!</h3>   
             <div class="boosts-holder" id="boosts-holder">   
                 {% for boost in boosts %}    
                     <button class="boost_{{boost.type}}" id="boost_{{boost.id}}" onclick="buy_boost({{boost.id}})">    
